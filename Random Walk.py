@@ -1,8 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[2]:
-
+# This code will simulate a random walk in 1D 2D and 3D and find the diffusion constant for each dimension
 
 import random
 import math
@@ -178,58 +174,4 @@ plt.plot(step_3D, model(step,popt[0]), linewidth = 4, label = '')
 plt.legend()
 plt.savefig('Random_Walk_3D.png')
 plt.show()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
