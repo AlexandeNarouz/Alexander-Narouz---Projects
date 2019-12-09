@@ -39,7 +39,6 @@ def average(func,n): #n is number of walkers
         The average displacement squared for n number of walkers as an array.
     '''
     total = np.zeros(len(func(100)))
-    result = []
     for i in range(n):
         array = np.array(func(100))
         total = array + total
@@ -76,9 +75,7 @@ def random_walk2D(n):
         theta_x = random.randint(0,360)
         x_component = r_x * np.cos(math.radians(theta_x))
         # y components
-        r_y = random.random()
-        theta_y = random.randint(0,360)
-        y_component = r_y * np.sin(math.radians(theta_y))
+        y_component = r_x * np.sin(math.radians(theta_x))
         total_displacement_squared += (x_component**2 + y_component**2)
         displacement.append(total_displacement_squared)
     return displacement
@@ -103,14 +100,9 @@ def random_walk3D(n):
         phi_x = random.randint(0,360)
         x_component = r_x * np.cos(math.radians(theta_x)) * np.sin(math.radians(phi_x))
         # y components
-        r_y = random.random()
-        theta_y = random.randint(0,360)
-        phi_y = random.randint(0,360)
-        y_component = r_y * np.sin(math.radians(theta_y)) * np.sin(math.radians(phi_y))
+        y_component = r_x * np.sin(math.radians(theta_x)) * np.sin(math.radians(phi_x))
         #z components
-        r_z = random.random()
-        phi_z = random.randint(0,360)
-        z_component = r_z * np.cos(math.radians(phi_z))
+        z_component = r_x * np.cos(math.radians(phi_x))
         total_displacement_squared += (x_component**2 + y_component**2 + z_component**2)
         displacement.append(total_displacement_squared)
     return displacement
