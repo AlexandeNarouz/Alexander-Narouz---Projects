@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[42]:
-
 
 #Numerical Laplace Equation Solution with Finite Difference Method
 #Solving electric potential in metal box
@@ -72,16 +67,6 @@ plt.contourf(X, Y, V, colorinterpolation, cmap=colourMap)
 plt.colorbar()
 
 plt.show()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
 
 
 
