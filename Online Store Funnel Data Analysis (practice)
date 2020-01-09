@@ -1,0 +1,33 @@
+#The goal of this code is to evaluate funnel data from an online store
+import pandas as pd
+
+visits = pd.read_csv('visits.csv',
+                     parse_dates=[1])
+cart = pd.read_csv('cart.csv',
+                   parse_dates=[1])
+checkout = pd.read_csv('checkout.csv',
+                       parse_dates=[1])
+purchase = pd.read_csv('purchase.csv',
+                       parse_dates=[1])
+print(visits.head(),cart.head(),checkout.head(),purchase.head())
+visits_cart = pd.merge(visits,cart,how='left')
+cart_times = visits_cart[visits_cart.cart_time.isnull()]
+print(len(cart_times)) #1652
+no_t = pd.merge(visits,cart,how='left')
+percent_no_t = float(len(no_t[no_t.cart_time.isnull()]))/len(no_t)
+print(percent_no_t*100)
+cart_checkout_left = pd.merge(cart,checkout,how='left')
+percent_no_checkout = len(cart_checkout_left[cart_checkout_left.checkout_time.isnull()])/float(len(cart_checkout_left))
+print(percent_no_checkout*100)
+all_data = visits_cart.merge(no_t,how='left').merge(cart_checkout_left,how='left')
+print(all_data.head())
+purchase_left = pd.merge(checkout,purchase,how='left')
+percent_8 = len(purchase_left[purchase_left.purchase_time.isnull()])/float(len(all_data.checkout_time))
+print(percent_8*100) #weakest step
+all_data = all_data.merge(purchase_left,how='left')
+print(all_data)
+all_data['time_to_purchase'] = \
+    all_data.purchase_time - \
+    all_data.visit_time
+print(all_data.time_to_purchase)
+print(all_data.time_to_purchase.mean())
